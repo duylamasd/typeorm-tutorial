@@ -19,7 +19,7 @@ import { ReminderFrequency } from './reminder-frequency';
  * @extends BaseEntity
  */
 @Entity()
-@Tree('closure-table')
+@Tree('materialized-path')
 @Index('I008', ['subject'])
 @Index('I009', ['creatorId'])
 @Index('I010', ['parentMessageId'])
