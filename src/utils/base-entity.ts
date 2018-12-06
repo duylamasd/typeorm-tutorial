@@ -7,7 +7,10 @@ import {
 
 /**
  * Base entity, contains id and timestamps columns.
- * @extends Base
+ * @extends   Base
+ * @property  {string}  id
+ * @property  {Date}    createdAt
+ * @property  {Date}    updatedAt
  */
 export abstract class BaseEntity extends Base {
 

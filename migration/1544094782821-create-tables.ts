@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class createTables1544028414510 implements MigrationInterface {
+export class createTables1544094782821 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.query("CREATE TABLE `message_recipient` (`id` varchar(255) NOT NULL, `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `updatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), `recipientId` varchar(255) NULL, `recipientGroupId` varchar(255) NULL, `messageId` varchar(255) NOT NULL, `isRead` tinyint NOT NULL DEFAULT 1, INDEX `I016` (`recipientId`, `recipientGroupId`, `messageId`), INDEX `I015` (`messageId`), INDEX `I014` (`recipientGroupId`), INDEX `I013` (`recipientId`), PRIMARY KEY (`id`)) ENGINE=InnoDB");

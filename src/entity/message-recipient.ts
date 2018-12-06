@@ -12,7 +12,14 @@ import { Message } from './message';
 
 /**
  * Message recipient entity
- * @extends BaseEntity
+ * @extends   BaseEntity
+ * @property  {string}              recipientId
+ * @property  {string}              recipientGroupId
+ * @property  {string}              messageId
+ * @property  {boolean}             isRead
+ * @property  {Promise<User>}       recipient
+ * @property  {Promise<UserGroup>}  recipientGroup
+ * @property  {Promise<Message>}    message
  */
 @Entity()
 @Index('I013', ['recipientId'])
@@ -51,14 +58,14 @@ export class MessageRecipient extends BaseEntity {
     name: 'recipientId',
     referencedColumnName: 'id'
   })
-  user: Promise<User>;
+  recipient: Promise<User>;
 
   @ManyToOne(type => UserGroup, { nullable: true })
   @JoinColumn({
     name: 'recipientGroupId',
     referencedColumnName: 'id'
   })
-  userGroup: Promise<UserGroup>;
+  recipientGroup: Promise<UserGroup>;
 
   @ManyToOne(type => Message)
   @JoinColumn({

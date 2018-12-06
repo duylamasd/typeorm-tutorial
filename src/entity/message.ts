@@ -16,7 +16,20 @@ import { ReminderFrequency } from './reminder-frequency';
 
 /**
  * Message entity
- * @extends BaseEntity
+ * @extends   BaseEntity
+ * @property  {string}                        subject
+ * @property  {string}                        creatorId
+ * @property  {string}                        body
+ * @property  {string}                        parentMessageId
+ * @property  {Date}                          expiryDate
+ * @property  {boolean}                       isReminder
+ * @property  {Date}                          nextRemindDate
+ * @property  {string}                        reminderFrequencyId
+ * @property  {Promise<User>}                 creator
+ * @property  {Promise<ReminderFrequency>}    reminderFrequency
+ * @property  {Promise<MessageRecipient[]>}   messageRecipients
+ * @property  {Promise<Message[]>}            chldrenMessages
+ * @property  {Promise<Message>}              parentMessage
  */
 @Entity()
 @Tree('materialized-path')
@@ -82,7 +95,7 @@ export class Message extends BaseEntity {
     name: 'creatorId',
     referencedColumnName: 'id'
   })
-  user: Promise<User>;
+  creator: Promise<User>;
 
   @ManyToOne(type => ReminderFrequency, { nullable: true })
   @JoinColumn({

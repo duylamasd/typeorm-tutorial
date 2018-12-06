@@ -9,7 +9,10 @@ import { UserGroup } from './user-group';
 
 /**
  * Group entity
- * @extends BaseEntity
+ * @extends   BaseEntity
+ * @property  {string}                name
+ * @property  {boolean}               isActive
+ * @property  {Promise<UserGroup[]>}  userGroups
  */
 @Entity()
 @Index('I003', ['name'], {

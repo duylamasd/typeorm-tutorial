@@ -13,7 +13,13 @@ import { MessageRecipient } from './message-recipient';
 
 /**
  * UserGroup entity
- * @extends BaseEntity
+ * @extends   BaseEntity
+ * @property  {string}                      userId
+ * @property  {string}                      groupId
+ * @property  {boolean}                     isActive
+ * @property  {Promise<User>}               user
+ * @property  {Promise<Group>}              group
+ * @property  {Promise<MessageRecipient[]>} messageRecipients
  */
 @Entity()
 @Index('I004', ['userId'])
@@ -56,6 +62,6 @@ export class UserGroup extends BaseEntity {
   })
   group: Promise<Group>;
 
-  @OneToMany(type => MessageRecipient, messageRecipient => messageRecipient.user)
+  @OneToMany(type => MessageRecipient, messageRecipient => messageRecipient.recipientGroup)
   messageRecipients: Promise<MessageRecipient[]>;
 }

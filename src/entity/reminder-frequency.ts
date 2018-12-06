@@ -9,7 +9,11 @@ import { Message } from './message';
 
 /**
  * Reminder frequency entity
- * @extends BaseEntity
+ * @extends   BaseEntity
+ * @property  {string}              title
+ * @property  {string}              frequency
+ * @property  {boolean}             isActive
+ * @property  {Promise<Message[]>}  messages
  */
 @Entity()
 @Index('I007', ['title'])
