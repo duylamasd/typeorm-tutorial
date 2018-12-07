@@ -4,6 +4,8 @@
   "description": "TypeORM tutorial",
   "main": "app.js",
   "scripts": {
+    "start": "tsc && node ./build/app.js",
+    "start-ts": "./node_modules/.bin/ts-node ./src/app.ts",
     "typeorm": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
