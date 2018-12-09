@@ -1,7 +1,8 @@
 import {
   Request,
   Response,
-  NextFunction
+  NextFunction,
+  Router
 } from 'express';
 import {
   getConnection,
@@ -15,7 +16,15 @@ import HttpStatus from 'http-status-codes';
  * Base controller
  */
 export abstract class BaseController<T extends Repository<any>> {
+  /**
+   * The controller repository to execute queries.
+   */
   protected repository: T;
+
+  /**
+   * The router for apis.
+   */
+  public router: Router;
 
   /**
    * Base controller constructor
@@ -26,12 +35,16 @@ export abstract class BaseController<T extends Repository<any>> {
   }
 
   create = (req: Request, res: Response, next: NextFunction) => {
-    let newEntity = this.repository.create(req.body);
-    this.repository.save(newEntity).then(entity => {
-      res.status(HttpStatus.CREATED).json(entity);
-    }).catch(e => {
+    try {
+      let newEntity = this.repository.create(req.body);
+      this.repository.save(newEntity).then(entity => {
+        res.status(HttpStatus.CREATED).json(entity);
+      }).catch(e => {
+        next(e);
+      });
+    } catch (e) {
       next(e);
-    });
+    }
   }
 
   find = (req: Request, res: Response, next: NextFunction) => {
