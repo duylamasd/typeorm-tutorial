@@ -19,11 +19,14 @@ export abstract class BaseRouter<T extends BaseController<any>> {
     this.controller = controller;
     this.router = Router();
     this.initBasicRoute();
+    this.initRoutes();
   }
 
-  private initBasicRoute(): void {
+  protected initBasicRoute(): void {
     this.router.get('/', this.controller.find);
     this.router.get('/:id', this.controller.findById);
     this.router.post('/', this.controller.create);
   }
+
+  protected abstract initRoutes(): void;
 }

@@ -1,7 +1,8 @@
 import {
   EntityRepository,
   UpdateResult,
-  DeleteResult
+  DeleteResult,
+  getConnection
 } from 'typeorm';
 import { BaseRepositories } from '../utils';
 import { Group, UserGroup } from '../entity';
@@ -17,19 +18,19 @@ export class GroupRepository extends BaseRepositories.BaseRepository<Group> {
     return this.findOne({ name });
   }
 
-  activeById(id: string): Promise<UpdateResult> {
+  activateById(id: string): Promise<UpdateResult> {
     return this.update(id, { isActive: true });
   }
 
-  deactiveById(id: string): Promise<UpdateResult> {
+  deactivateById(id: string): Promise<UpdateResult> {
     return this.update(id, { isActive: false });
   }
 
-  activeByName(name: string): Promise<UpdateResult> {
+  activateByName(name: string): Promise<UpdateResult> {
     return this.update({ name }, { isActive: true });
   }
 
-  deactiveByName(name: string): Promise<UpdateResult> {
+  deactivateByName(name: string): Promise<UpdateResult> {
     return this.update({ name }, { isActive: false });
   }
 
@@ -46,13 +47,13 @@ export class GroupRepository extends BaseRepositories.BaseRepository<Group> {
   }
 
   getUserGroups(idOrName: string, skip?: number, limit?: number): Promise<UserGroup[]> {
-    return this.createQueryBuilder('group')
+    return getConnection()
+      .createQueryBuilder(UserGroup, 'userGroup')
+      .leftJoinAndSelect(Group, 'group', 'group.id = userGroup.groupId')
       .where('group.id = :id', { id: idOrName })
       .orWhere('group.name = :name', { name: idOrName })
-      .relation(UserGroup, 'userGroups')
-      .select()
       .skip(skip)
-      .limit(limit)
+      .take(limit)
       .getMany();
   }
 }

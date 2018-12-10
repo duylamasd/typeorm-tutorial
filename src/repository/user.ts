@@ -1,4 +1,4 @@
-import { EntityRepository } from 'typeorm';
+import { EntityRepository, getConnection, UpdateResult } from 'typeorm';
 import { BaseRepositories } from '../utils';
 import {
   User,
@@ -18,6 +18,14 @@ export class UserRepository extends BaseRepositories.BaseRepository<User> {
     return this.findOne({ firstName, middleName, lastName });
   }
 
+  activate(id: string): Promise<UpdateResult> {
+    return this.update(id, { isActive: true });
+  }
+
+  deactivate(id: string): Promise<UpdateResult> {
+    return this.update(id, { isActive: false });
+  }
+
   isActive(id: string): Promise<boolean>;
   isActive(firstName: string, middleName: string, lastName: string): Promise<boolean>;
   isActive(idOrFirstName: string, middleName?: string, lastName?: string): Promise<boolean> {
@@ -34,31 +42,28 @@ export class UserRepository extends BaseRepositories.BaseRepository<User> {
   }
 
   getUserGroups(id: string, skip?: number, limit?: number): Promise<UserGroup[]> {
-    return this.createQueryBuilder('user')
-      .relation(UserGroup, 'userGroups')
-      .of(id)
-      .select()
+    return getConnection()
+      .createQueryBuilder(UserGroup, 'userGroup')
+      .where('userGroup.userId = :userId', { userId: id })
       .skip(skip)
-      .limit(limit)
+      .take(limit)
       .getMany();
   }
 
   getMessages(id: string, skip?: number, limit?: number): Promise<Message[]> {
-    return this.createQueryBuilder('user')
-      .relation(Message, 'messages')
-      .of(id)
-      .select()
-      .skip(skip)
+    return getConnection()
+      .createQueryBuilder(Message, 'message')
+      .where('message.creatorId = :creatorId', { creatorId: id })
+      .offset(skip)
       .limit(limit)
       .getMany();
   }
 
   getMessageRecipients(id: string, skip?: number, limit?: number): Promise<MessageRecipient[]> {
-    return this.createQueryBuilder('user')
-      .relation(MessageRecipient, 'messageRecipients')
-      .of(id)
-      .select()
-      .skip(skip)
+    return getConnection()
+      .createQueryBuilder(MessageRecipient, 'mr')
+      .where('mr.recipientId = :recipientId', { recipientId: id })
+      .offset(skip)
       .limit(limit)
       .getMany();
   }

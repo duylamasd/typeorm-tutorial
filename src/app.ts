@@ -3,12 +3,24 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import compression from 'compression';
 import 'reflect-metadata';
-import { createConnection, getConnectionOptions } from 'typeorm';
+import { createConnection } from 'typeorm';
 
-import { UserRouter } from './router';
 import { ErrorHandler } from './utils';
-import { UserController } from './controller';
-import { UserRepository } from './repository';
+import {
+  UserRouter,
+  GroupRouter,
+  UserGroupRouter
+} from './router';
+import {
+  UserController,
+  GroupController,
+  UserGroupController
+} from './controller';
+import {
+  UserRepository,
+  GroupRepository,
+  UserGroupRepository
+} from './repository';
 
 dotenv.config();
 
@@ -17,8 +29,12 @@ createConnection().then(async () => {
   app.use(bodyParser.json());
   app.use(compression());
 
-  let userRouter = new UserRouter(new UserController(UserRepository))
+  let userRouter = new UserRouter(new UserController(UserRepository));
+  let groupRouter = new GroupRouter(new GroupController(GroupRepository));
+  let userGroupRouter = new UserGroupRouter(new UserGroupController(UserGroupRepository));
   app.use('/users', userRouter.router);
+  app.use('/groups', groupRouter.router);
+  app.use('/user-groups', userGroupRouter.router);
 
   app.use(ErrorHandler);
 

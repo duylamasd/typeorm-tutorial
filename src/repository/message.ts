@@ -1,4 +1,4 @@
-import { EntityRepository } from 'typeorm';
+import { EntityRepository, getConnection } from 'typeorm';
 import { BaseRepositories } from '../utils';
 import {
   Message,
@@ -44,11 +44,10 @@ export class MessageRepository extends BaseRepositories.BaseTreeRepository<Messa
   }
 
   getMessageRecipients(id: string, skip?: number, limit?: number): Promise<MessageRecipient[]> {
-    return this.createQueryBuilder('message')
-      .relation(MessageRecipient, 'messageRecipients')
-      .of(id)
-      .select()
-      .skip(skip)
+    return getConnection()
+      .createQueryBuilder(MessageRecipient, 'mr')
+      .where('mr.messageId = :messageId', { messageId: id })
+      .offset(skip)
       .limit(limit)
       .getMany();
   }

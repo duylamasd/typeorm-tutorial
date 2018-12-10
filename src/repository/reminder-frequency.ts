@@ -1,4 +1,4 @@
-import { EntityRepository } from 'typeorm';
+import { EntityRepository, getConnection } from 'typeorm';
 import { BaseRepositories } from '../utils';
 import { ReminderFrequency, Message } from '../entity';
 
@@ -23,11 +23,10 @@ export class ReminderFrequencyRepository extends BaseRepositories.BaseRepository
   }
 
   getMessages(id: string, skip?: number, limit?: number): Promise<Message[]> {
-    return this.createQueryBuilder('rF')
-      .relation(Message, 'messages')
-      .of(id)
-      .select()
-      .skip(skip)
+    return getConnection()
+      .createQueryBuilder(Message, 'message')
+      .where('message.reminderFrequencyId = :rmId', { rmId: id })
+      .offset(skip)
       .limit(limit)
       .getMany();
   }

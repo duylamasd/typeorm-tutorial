@@ -1,4 +1,4 @@
-import { EntityRepository } from 'typeorm';
+import { EntityRepository, getConnection, UpdateResult } from 'typeorm';
 import { BaseRepositories } from '../utils';
 import { UserGroup, User, Group, MessageRecipient } from '../entity';
 
@@ -27,6 +27,14 @@ export class UserGroupRepository extends BaseRepositories.BaseRepository<UserGro
     }).then((userGroup: UserGroup) => userGroup.isActive);
   }
 
+  activateById(id: string): Promise<UpdateResult> {
+    return this.update(id, { isActive: true });
+  }
+
+  deactivateById(id: string): Promise<UpdateResult> {
+    return this.update(id, { isActive: false });
+  }
+
   findUser(id: string): Promise<User> {
     return this.findOne(id)
       .then(async (userGroup: UserGroup) => {
@@ -42,11 +50,10 @@ export class UserGroupRepository extends BaseRepositories.BaseRepository<UserGro
   }
 
   getMessageRecipients(id: string, skip?: number, limit?: number): Promise<MessageRecipient[]> {
-    return this.createQueryBuilder('ug')
-      .relation(MessageRecipient, 'messageRecipients')
-      .of(id)
-      .select()
-      .skip(skip)
+    return getConnection()
+      .createQueryBuilder(MessageRecipient, 'mr')
+      .where('mr.recipientGroupId = :rgId', { rgId: id })
+      .offset(skip)
       .limit(limit)
       .getMany();
   }

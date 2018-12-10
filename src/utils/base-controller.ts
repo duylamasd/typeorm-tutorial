@@ -11,6 +11,7 @@ import {
   DeleteResult
 } from 'typeorm';
 import HttpStatus from 'http-status-codes';
+import { APIQuery } from '../constant';
 
 /**
  * Base controller
@@ -20,11 +21,6 @@ export abstract class BaseController<T extends Repository<any>> {
    * The controller repository to execute queries.
    */
   protected repository: T;
-
-  /**
-   * The router for apis.
-   */
-  public router: Router;
 
   /**
    * Base controller constructor
@@ -48,9 +44,9 @@ export abstract class BaseController<T extends Repository<any>> {
   }
 
   find = (req: Request, res: Response, next: NextFunction) => {
-    let filter = req.query['$filter'];
-    let skip = req.query['$skip'];
-    let limit = req.query['$limit'];
+    let filter = req.query[APIQuery.FILTER];
+    let skip = req.query[APIQuery.SKIP];
+    let limit = req.query[APIQuery.LIMIT];
     this.repository.find({
       where: filter,
       skip: skip,
