@@ -7,7 +7,7 @@ import { ObjectType } from 'typeorm';
 import { GroupRepository } from '../repository';
 import { BaseController } from '../utils';
 import { APIQuery } from '../constant';
-import { Group, UserGroup } from '../entity';
+import { UserGroup } from '../entity';
 
 /**
  * Group controller
