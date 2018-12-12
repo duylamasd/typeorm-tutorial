@@ -33,6 +33,7 @@ export abstract class BaseController<T extends Repository<any>> {
   create = (req: Request, res: Response, next: NextFunction) => {
     try {
       let newEntity = this.repository.create(req.body);
+
       this.repository.save(newEntity).then(entity => {
         res.status(HttpStatus.CREATED).json(entity);
       }).catch(e => {
@@ -47,6 +48,7 @@ export abstract class BaseController<T extends Repository<any>> {
     let filter = req.query[APIQuery.FILTER];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
+
     this.repository.find({
       where: filter,
       skip: skip,
@@ -60,6 +62,7 @@ export abstract class BaseController<T extends Repository<any>> {
 
   findById = (req: Request, res: Response, next: NextFunction) => {
     let id = req.params['id'];
+
     this.repository.findOne(id)
       .then(row => {
         res.json(row);
@@ -70,6 +73,7 @@ export abstract class BaseController<T extends Repository<any>> {
 
   deleteById = (req: Request, res: Response, next: NextFunction) => {
     let id = req.params['id'];
+
     this.repository.delete(id)
       .then((result: DeleteResult) => {
         res.json(result);

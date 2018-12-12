@@ -1,6 +1,5 @@
 import { BaseRouter } from '../utils';
 import { UserGroupController } from '../controller';
-import { UserGroupRepository } from '../repository';
 
 /**
  * User-group router

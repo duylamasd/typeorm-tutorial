@@ -59,7 +59,7 @@ export class MessageRepository extends BaseRepositories.BaseTreeRepository<Messa
       });
   }
 
-  async getChildrenMessages(id: string, skip?: number, limit?: number): Promise<Message[]> {
+  async getChildMessages(id: string, skip?: number, limit?: number): Promise<Message[]> {
     let message: Message = await this.findOne(id);
     return await this.createDescendantsQueryBuilder('message', 'messageClosure', message)
       .skip(skip)

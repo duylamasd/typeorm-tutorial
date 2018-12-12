@@ -31,6 +31,7 @@ export class UserController extends BaseController<UserRepository> {
 
   isActive = (req: Request, res: Response, next: NextFunction) => {
     let userId = req.params['id'];
+
     this.repository.isActive(userId)
       .then((status: boolean) => {
         res.json({ status });
@@ -41,6 +42,7 @@ export class UserController extends BaseController<UserRepository> {
 
   activate = (req: Request, res: Response, next: NextFunction) => {
     let userId = req.params['id'];
+
     this.repository.activate(userId)
       .then(result => {
         res.json(result);
@@ -51,6 +53,7 @@ export class UserController extends BaseController<UserRepository> {
 
   deactivate = (req: Request, res: Response, next: NextFunction) => {
     let userId = req.params['id'];
+
     this.repository.deactivate(userId)
       .then(result => {
         res.json(result);
@@ -63,6 +66,7 @@ export class UserController extends BaseController<UserRepository> {
     let userId = req.params['id'];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
+
     this.repository.getUserGroups(userId, skip, limit)
       .then((groups: UserGroup[]) => {
         res.json(groups);
@@ -75,6 +79,7 @@ export class UserController extends BaseController<UserRepository> {
     let userId = req.params['id'];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
+
     this.repository.getMessages(userId, skip, limit)
       .then((messages: Message[]) => {
         res.json(messages);
@@ -87,6 +92,7 @@ export class UserController extends BaseController<UserRepository> {
     let userId = req.params['id'];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
+
     this.repository.getMessageRecipients(userId, skip, limit)
       .then((msr: MessageRecipient[]) => {
         res.json(msr);

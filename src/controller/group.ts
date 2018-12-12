@@ -31,6 +31,7 @@ export class GroupController extends BaseController<GroupRepository> {
 
   isActive = (req: Request, res: Response, next: NextFunction) => {
     let idOrName = req.params['idOrName'];
+
     this.repository.isActive(idOrName)
       .then((status: boolean) => {
         res.json({ status });
@@ -41,8 +42,9 @@ export class GroupController extends BaseController<GroupRepository> {
 
   getUserGroups = (req: Request, res: Response, next: NextFunction) => {
     let idOrName = req.params['idOrName'];
-    let skip = req.params[APIQuery.SKIP];
-    let limit = req.params[APIQuery.LIMIT];
+    let skip = req.query[APIQuery.SKIP];
+    let limit = req.query[APIQuery.LIMIT];
+
     this.repository.getUserGroups(idOrName, skip, limit)
       .then((userGroups: UserGroup[]) => {
         res.json(userGroups);
@@ -53,6 +55,7 @@ export class GroupController extends BaseController<GroupRepository> {
 
   deactivate = (req: Request, res: Response, next: NextFunction) => {
     let id = req.params['id'];
+
     this.repository.deactivateById(id)
       .then(result => {
         res.json(result);
@@ -63,6 +66,7 @@ export class GroupController extends BaseController<GroupRepository> {
 
   activate = (req: Request, res: Response, next: NextFunction) => {
     let id = req.params['id'];
+
     this.repository.activateById(id)
       .then(result => {
         res.json(result);

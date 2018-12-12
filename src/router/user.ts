@@ -1,6 +1,5 @@
 import { BaseRouter } from '../utils';
 import { UserController } from '../controller';
-import { UserRepository } from '../repository';
 
 /**
  * User router
