@@ -1,5 +1,6 @@
 import { BaseRouter } from '../utils';
 import { GroupController } from '../controller';
+import { GroupRepository } from '../repository';
 
 /**
  * Group router
@@ -7,8 +8,19 @@ import { GroupController } from '../controller';
  */
 export class GroupRouter extends BaseRouter<GroupController> {
 
-  constructor(controller: GroupController) {
+  private static instance: GroupRouter;
+
+  private constructor(controller: GroupController) {
     super(controller);
+  }
+
+  public static getInstance(): GroupRouter {
+    if (!this.instance) {
+      let controller = GroupController.getInstance();
+      this.instance = new GroupRouter(controller);
+    }
+
+    return this.instance;
   }
 
   protected initRoutes(): void {

@@ -15,8 +15,18 @@ import { Group, UserGroup } from '../entity';
  */
 export class GroupController extends BaseController<GroupRepository> {
 
-  constructor(repository: ObjectType<GroupRepository>) {
+  private static instance: GroupController;
+
+  private constructor(repository: ObjectType<GroupRepository>) {
     super(repository);
+  }
+
+  public static getInstance(): GroupController {
+    if (!this.instance) {
+      this.instance = new GroupController(GroupRepository);
+    }
+
+    return this.instance;
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {

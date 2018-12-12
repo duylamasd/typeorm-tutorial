@@ -1,5 +1,6 @@
 import { BaseRouter } from '../utils';
 import { UserController } from '../controller';
+import { UserRepository } from '../repository';
 
 /**
  * User router
@@ -7,8 +8,19 @@ import { UserController } from '../controller';
  */
 export class UserRouter extends BaseRouter<UserController> {
 
+  private static instance: UserRouter;
+
   constructor(controller: UserController) {
     super(controller);
+  }
+
+  public static getInstance(): UserRouter {
+    if (!this.instance) {
+      let controller = UserController.getInstance();
+      this.instance = new UserRouter(controller);
+    }
+
+    return this.instance;
   }
 
   protected initRoutes(): void {

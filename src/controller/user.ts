@@ -15,8 +15,18 @@ import { UserGroup, Message, MessageRecipient } from '../entity';
  */
 export class UserController extends BaseController<UserRepository> {
 
-  constructor(repository: ObjectType<UserRepository>) {
+  private static instance: UserController;
+
+  private constructor(repository: ObjectType<UserRepository>) {
     super(repository);
+  }
+
+  public static getInstance(): UserController {
+    if (!this.instance) {
+      this.instance = new UserController(UserRepository);
+    }
+
+    return this.instance;
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {

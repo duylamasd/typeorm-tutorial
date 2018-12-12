@@ -1,10 +1,26 @@
 import { BaseRouter } from '../utils';
 import { UserGroupController } from '../controller';
+import { UserGroupRepository } from '../repository';
 
+/**
+ * User-group router
+ * @extends BaseRouter<UserGroupController>
+ */
 export class UserGroupRouter extends BaseRouter<UserGroupController> {
 
-  constructor(controller: UserGroupController) {
+  private static instance: UserGroupRouter;
+
+  private constructor(controller: UserGroupController) {
     super(controller);
+  }
+
+  public static getInstance(): UserGroupRouter {
+    if (!this.instance) {
+      let controller = UserGroupController.getInstance();
+      this.instance = new UserGroupRouter(controller);
+    }
+
+    return this.instance;
   }
 
   protected initRoutes(): void {

@@ -15,8 +15,18 @@ import { APIQuery } from '../constant';
  */
 export class UserGroupController extends BaseController<UserGroupRepository> {
 
-  constructor(repository: ObjectType<UserGroupController>) {
+  private static instance: UserGroupController;
+
+  private constructor(repository: ObjectType<UserGroupController>) {
     super(repository);
+  }
+
+  public static getInstance(): UserGroupController {
+    if (!this.instance) {
+      this.instance = new UserGroupController(UserGroupRepository);
+    }
+
+    return this.instance;
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {
