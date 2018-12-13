@@ -28,7 +28,6 @@ export function SingletonRouterInstance<T>(controllerType?: T) {
       instance = value;
     }
 
-    Reflect.deleteProperty[property];
     Reflect.defineProperty(target, property, {
       get: getter,
       set: setter

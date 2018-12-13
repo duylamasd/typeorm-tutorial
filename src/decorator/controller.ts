@@ -27,7 +27,6 @@ export function SingletonControllerInstance<T>(repository?: T) {
       instance = value;
     }
 
-    Reflect.deleteProperty[property];
     Reflect.defineProperty(target, property, {
       get: getter,
       set: setter
