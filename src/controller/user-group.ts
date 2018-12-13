@@ -7,17 +7,17 @@ import { ObjectType } from 'typeorm';
 import { UserGroupRepository } from '../repository';
 import { BaseController } from '../utils';
 import { User, Group, MessageRecipient } from '../entity';
-import { APIQuery } from '../constant';
+import { APIQuery, DecoratorMetadataKeys } from '../constant';
 import {
   SingletonControllerInstance,
-  SingletonControllerClass
+  SingletonClass
 } from '../decorator';
 
 /**
  * User group repository
  * @extends BaseController<UserGroupRepository>
  */
-@SingletonControllerClass()
+@SingletonClass(DecoratorMetadataKeys.CONTROLLER_INSTANCE)
 export class UserGroupController extends BaseController<UserGroupRepository> {
 
   @SingletonControllerInstance(UserGroupRepository)

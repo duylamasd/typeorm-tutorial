@@ -34,21 +34,5 @@ export function SingletonRouterInstance<T>(controllerType?: T) {
       set: setter
     });
     // #endregion
-  }
-}
-
-/**
- * Singleton router class decorator.
- * This decorator adds the getInsatance static method for getting the value of the instance property.
- */
-export function SingletonRouterClass() {
-  return function (target: any) {
-    // Get the instance property name of the class from metadata.
-    let instancePropertyName = Reflect.getMetadata(DecoratorMetadataKeys.ROUTER_INSTANCE, target);
-
-    // Create the getInstance method
-    target.getInstance = () => {
-      return target[instancePropertyName];
-    }
-  }
+  };
 }

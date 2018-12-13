@@ -6,18 +6,18 @@ import {
 import { ObjectType } from 'typeorm';
 import { ReminderFrequencyRepository } from '../repository';
 import { BaseController } from '../utils';
-import { APIQuery } from '../constant';
+import { APIQuery, DecoratorMetadataKeys } from '../constant';
 import { ReminderFrequency, Message } from '../entity';
 import {
   SingletonControllerInstance,
-  SingletonControllerClass
+  SingletonClass
 } from '../decorator';
 
 /**
  * Reminder frequency controller
  * @extends BaseController<ReminderFrequencyRepository>
  */
-@SingletonControllerClass()
+@SingletonClass(DecoratorMetadataKeys.CONTROLLER_INSTANCE)
 export class ReminderFrequencyController extends BaseController<ReminderFrequencyRepository> {
 
   @SingletonControllerInstance(ReminderFrequencyRepository)

@@ -2,14 +2,15 @@ import { BaseRouter } from '../utils';
 import { UserController } from '../controller';
 import {
   SingletonRouterInstance,
-  SingletonRouterClass
+  SingletonClass
 } from '../decorator';
+import { DecoratorMetadataKeys } from '../constant';
 
 /**
  * User router
  * @extends BaseRouter<UserController>
  */
-@SingletonRouterClass()
+@SingletonClass(DecoratorMetadataKeys.ROUTER_INSTANCE)
 export class UserRouter extends BaseRouter<UserController> {
 
   @SingletonRouterInstance(UserController)

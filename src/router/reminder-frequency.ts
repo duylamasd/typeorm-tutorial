@@ -2,14 +2,15 @@ import { BaseRouter } from '../utils';
 import { ReminderFrequencyController } from '../controller';
 import {
   SingletonRouterInstance,
-  SingletonRouterClass
+  SingletonClass
 } from '../decorator';
+import { DecoratorMetadataKeys } from '../constant';
 
 /**
  * Reminder frequency router
  * @extends BaseRouter<ReminderFrequencyController>
  */
-@SingletonRouterClass()
+@SingletonClass(DecoratorMetadataKeys.ROUTER_INSTANCE)
 export class ReminderFrequencyRouter extends BaseRouter<ReminderFrequencyController> {
 
   @SingletonRouterInstance(ReminderFrequencyController)

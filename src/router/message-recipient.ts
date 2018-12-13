@@ -2,14 +2,15 @@ import { BaseRouter } from '../utils';
 import { MessageRecipientController } from '../controller';
 import {
   SingletonRouterInstance,
-  SingletonRouterClass
+  SingletonClass
 } from '../decorator';
+import { DecoratorMetadataKeys } from '../constant';
 
 /**
  * Message recipient controller
  * @extends BaseRouter<MessageRecipientController>
  */
-@SingletonRouterClass()
+@SingletonClass(DecoratorMetadataKeys.ROUTER_INSTANCE)
 export class MessageRecipientRouter extends BaseRouter<MessageRecipientController> {
 
   @SingletonRouterInstance(MessageRecipientController)

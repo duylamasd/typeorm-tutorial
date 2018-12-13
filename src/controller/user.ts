@@ -6,18 +6,18 @@ import {
 import { ObjectType } from 'typeorm';
 import { UserRepository } from '../repository';
 import { BaseController } from '../utils';
-import { APIQuery } from '../constant';
+import { APIQuery, DecoratorMetadataKeys } from '../constant';
 import { UserGroup, Message, MessageRecipient } from '../entity';
 import {
   SingletonControllerInstance,
-  SingletonControllerClass
+  SingletonClass
 } from '../decorator';
 
 /**
  * User controller
  * @extends BaseController<UserRepository>
  */
-@SingletonControllerClass()
+@SingletonClass(DecoratorMetadataKeys.CONTROLLER_INSTANCE)
 export class UserController extends BaseController<UserRepository> {
 
   @SingletonControllerInstance(UserRepository)

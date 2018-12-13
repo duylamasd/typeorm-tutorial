@@ -12,17 +12,17 @@ import {
 import { ObjectType } from 'typeorm';
 import { MessageRepository } from '../repository';
 import { BaseController } from '../utils';
-import { APIQuery } from '../constant';
+import { APIQuery, DecoratorMetadataKeys } from '../constant';
 import {
   SingletonControllerInstance,
-  SingletonControllerClass
+  SingletonClass
 } from '../decorator';
 
 /**
  * Message controller
  * @extends BaseController<MessageRepository>
  */
-@SingletonControllerClass()
+@SingletonClass(DecoratorMetadataKeys.CONTROLLER_INSTANCE)
 export class MessageController extends BaseController<MessageRepository> {
 
   @SingletonControllerInstance(MessageRepository)

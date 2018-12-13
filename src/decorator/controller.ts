@@ -33,21 +33,5 @@ export function SingletonControllerInstance<T>(repository?: T) {
       set: setter
     });
     // #endregion
-  }
-}
-
-/**
- * Singleton controller class decorator.
- * This decorator adds the getInsatance static method for getting the value of the instance property.
- */
-export function SingletonControllerClass() {
-  return function (target: any) {
-    // Get the right instance property name of the class from metadata.
-    let instancePropertyName = Reflect.getMetadata(DecoratorMetadataKeys.CONTROLLER_INSTANCE, target);
-
-    // Create the getInstance method.
-    target.getInstance = () => {
-      return target[instancePropertyName];
-    }
-  }
+  };
 }
