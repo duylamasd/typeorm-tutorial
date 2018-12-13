@@ -14,6 +14,7 @@ export function SingletonRouterInstance<T>(controllerType?: T) {
     // #region Create getter and setter for the targeted property
     let instance = target[property];
 
+    // Create new one if instance doesn't exist. Return the instance.
     const getter = () => {
       if (!instance) {
         let controller = controllerType['getInstance']();
