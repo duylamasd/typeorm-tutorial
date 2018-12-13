@@ -8,25 +8,23 @@ import { ReminderFrequencyRepository } from '../repository';
 import { BaseController } from '../utils';
 import { APIQuery } from '../constant';
 import { ReminderFrequency, Message } from '../entity';
+import {
+  SingletonControllerInstance,
+  SingletonControllerClass
+} from '../decorator';
 
 /**
  * Reminder frequency controller
  * @extends BaseController<ReminderFrequencyRepository>
  */
+@SingletonControllerClass()
 export class ReminderFrequencyController extends BaseController<ReminderFrequencyRepository> {
 
+  @SingletonControllerInstance(ReminderFrequencyRepository)
   private static instance: ReminderFrequencyController;
 
   private constructor(repository: ObjectType<ReminderFrequencyRepository>) {
     super(repository);
-  }
-
-  public static getInstance(): ReminderFrequencyController {
-    if (!this.instance) {
-      this.instance = new ReminderFrequencyController(ReminderFrequencyRepository);
-    }
-
-    return this.instance;
   }
 
   findByTitle = (req: Request, res: Response, next: NextFunction) => {

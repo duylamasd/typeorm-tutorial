@@ -13,25 +13,23 @@ import { ObjectType } from 'typeorm';
 import { MessageRepository } from '../repository';
 import { BaseController } from '../utils';
 import { APIQuery } from '../constant';
+import {
+  SingletonControllerInstance,
+  SingletonControllerClass
+} from '../decorator';
 
 /**
  * Message controller
  * @extends BaseController<MessageRepository>
  */
+@SingletonControllerClass()
 export class MessageController extends BaseController<MessageRepository> {
 
+  @SingletonControllerInstance(MessageRepository)
   private static instance: MessageController;
 
   private constructor(repository: ObjectType<MessageRepository>) {
     super(repository);
-  }
-
-  public static getInstance(): MessageController {
-    if (!this.instance) {
-      this.instance = new MessageController(MessageRepository);
-    }
-
-    return this.instance;
   }
 
   isReminder = (req: Request, res: Response, next: NextFunction) => {

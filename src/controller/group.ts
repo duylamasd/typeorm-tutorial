@@ -7,26 +7,24 @@ import { ObjectType } from 'typeorm';
 import { GroupRepository } from '../repository';
 import { BaseController } from '../utils';
 import { APIQuery } from '../constant';
-import { UserGroup } from '../entity';
+import { UserGroup, Group } from '../entity';
+import {
+  SingletonControllerInstance,
+  SingletonControllerClass
+} from '../decorator';
 
 /**
  * Group controller
  * @extends BaseController<GroupRepository>
  */
+@SingletonControllerClass()
 export class GroupController extends BaseController<GroupRepository> {
 
+  @SingletonControllerInstance(GroupRepository)
   private static instance: GroupController;
 
   private constructor(repository: ObjectType<GroupRepository>) {
     super(repository);
-  }
-
-  public static getInstance(): GroupController {
-    if (!this.instance) {
-      this.instance = new GroupController(GroupRepository);
-    }
-
-    return this.instance;
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {

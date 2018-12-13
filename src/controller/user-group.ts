@@ -8,25 +8,23 @@ import { UserGroupRepository } from '../repository';
 import { BaseController } from '../utils';
 import { User, Group, MessageRecipient } from '../entity';
 import { APIQuery } from '../constant';
+import {
+  SingletonControllerInstance,
+  SingletonControllerClass
+} from '../decorator';
 
 /**
  * User group repository
  * @extends BaseController<UserGroupRepository>
  */
+@SingletonControllerClass()
 export class UserGroupController extends BaseController<UserGroupRepository> {
 
+  @SingletonControllerInstance(UserGroupRepository)
   private static instance: UserGroupController;
 
   private constructor(repository: ObjectType<UserGroupController>) {
     super(repository);
-  }
-
-  public static getInstance(): UserGroupController {
-    if (!this.instance) {
-      this.instance = new UserGroupController(UserGroupRepository);
-    }
-
-    return this.instance;
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {

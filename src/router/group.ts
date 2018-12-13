@@ -1,26 +1,22 @@
 import { BaseRouter } from '../utils';
 import { GroupController } from '../controller';
-import { GroupRepository } from '../repository';
+import {
+  SingletonRouterInstance,
+  SingletonRouterClass
+} from '../decorator';
 
 /**
  * Group router
  * @extends BaseRouter<GroupController>
  */
+@SingletonRouterClass()
 export class GroupRouter extends BaseRouter<GroupController> {
 
+  @SingletonRouterInstance(GroupController)
   private static instance: GroupRouter;
 
   private constructor(controller: GroupController) {
     super(controller);
-  }
-
-  public static getInstance(): GroupRouter {
-    if (!this.instance) {
-      let controller = GroupController.getInstance();
-      this.instance = new GroupRouter(controller);
-    }
-
-    return this.instance;
   }
 
   protected initRoutes(): void {

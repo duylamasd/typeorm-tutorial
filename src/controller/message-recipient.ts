@@ -8,25 +8,23 @@ import { ObjectType } from 'typeorm';
 import { BaseController } from '../utils';
 import { MessageRecipientRepository } from '../repository';
 import { APIQuery } from '../constant';
+import {
+  SingletonControllerInstance,
+  SingletonControllerClass
+} from '../decorator';
 
 /**
  * Message recipient controller
  * @extends BaseController<MessageRecipientRepository>
  */
+@SingletonControllerClass()
 export class MessageRecipientController extends BaseController<MessageRecipientRepository> {
 
+  @SingletonControllerInstance(MessageRecipientRepository)
   private static instance: MessageRecipientController;
 
   private constructor(repository: ObjectType<MessageRecipientRepository>) {
     super(repository);
-  }
-
-  public static getInstance(): MessageRecipientController {
-    if (!this.instance) {
-      this.instance = new MessageRecipientController(MessageRecipientRepository);
-    }
-
-    return this.instance;
   }
 
   getUser = (req: Request, res: Response, next: NextFunction) => {

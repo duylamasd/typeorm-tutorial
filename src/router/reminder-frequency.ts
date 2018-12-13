@@ -1,25 +1,22 @@
 import { BaseRouter } from '../utils';
 import { ReminderFrequencyController } from '../controller';
+import {
+  SingletonRouterInstance,
+  SingletonRouterClass
+} from '../decorator';
 
 /**
  * Reminder frequency router
  * @extends BaseRouter<ReminderFrequencyController>
  */
+@SingletonRouterClass()
 export class ReminderFrequencyRouter extends BaseRouter<ReminderFrequencyController> {
 
+  @SingletonRouterInstance(ReminderFrequencyController)
   private static instance: ReminderFrequencyRouter;
 
   private constructor(controller: ReminderFrequencyController) {
     super(controller);
-  }
-
-  public static getInstance(): ReminderFrequencyRouter {
-    if (!this.instance) {
-      let controller = ReminderFrequencyController.getInstance();
-      this.instance = new ReminderFrequencyRouter(controller);
-    }
-
-    return this.instance;
   }
 
   protected initRoutes(): void {

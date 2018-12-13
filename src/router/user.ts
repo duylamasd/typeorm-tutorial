@@ -1,25 +1,22 @@
 import { BaseRouter } from '../utils';
 import { UserController } from '../controller';
+import {
+  SingletonRouterInstance,
+  SingletonRouterClass
+} from '../decorator';
 
 /**
  * User router
  * @extends BaseRouter<UserController>
  */
+@SingletonRouterClass()
 export class UserRouter extends BaseRouter<UserController> {
 
+  @SingletonRouterInstance(UserController)
   private static instance: UserRouter;
 
   constructor(controller: UserController) {
     super(controller);
-  }
-
-  public static getInstance(): UserRouter {
-    if (!this.instance) {
-      let controller = UserController.getInstance();
-      this.instance = new UserRouter(controller);
-    }
-
-    return this.instance;
   }
 
   protected initRoutes(): void {
