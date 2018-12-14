@@ -18,7 +18,7 @@ export class UserRouter extends BaseRouter<UserController> {
   @SingletonRouterInstance(UserController, userValidator)
   private static instance: UserRouter;
 
-  constructor(controller: UserController, validator?: ValidationChain[]) {
+  private constructor(controller: UserController, validator?: ValidationChain[]) {
     super(controller, validator);
   }
 
