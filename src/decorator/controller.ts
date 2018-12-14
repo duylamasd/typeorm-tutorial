@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { DecoratorMetadataKeys } from '../constant';
 
 /**
- * Singleton instance property of the controller
+ * Singleton instance property of the controller.
  * This decorator save the property name as class's metadata for validating.
  * @param repository The repository
  */

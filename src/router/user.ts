@@ -5,6 +5,8 @@ import {
   SingletonClass
 } from '../decorator';
 import { DecoratorMetadataKeys } from '../constant';
+import { ValidationChain } from 'express-validator/check';
+import { userValidator } from '../validator';
 
 /**
  * User router
@@ -13,11 +15,11 @@ import { DecoratorMetadataKeys } from '../constant';
 @SingletonClass(DecoratorMetadataKeys.ROUTER_INSTANCE)
 export class UserRouter extends BaseRouter<UserController> {
 
-  @SingletonRouterInstance(UserController)
+  @SingletonRouterInstance(UserController, userValidator)
   private static instance: UserRouter;
 
-  constructor(controller: UserController) {
-    super(controller);
+  constructor(controller: UserController, validator?: ValidationChain[]) {
+    super(controller, validator);
   }
 
   protected initRoutes(): void {

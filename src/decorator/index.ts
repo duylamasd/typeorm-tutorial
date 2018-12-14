@@ -2,7 +2,7 @@ import 'reflect-metadata';
 
 /**
  * Singleton class decorator.
- * This decorator adds the getInsatance static method for getting the value of the instance property.
+ * This decorator adds the getInstance static method for getting the value of the instance property.
  * @param {string} metadataKey The metadata key.
  */
 export function SingletonClass(metadataKey: string) {

@@ -5,6 +5,8 @@ import {
   SingletonClass
 } from '../decorator';
 import { DecoratorMetadataKeys } from '../constant';
+import { ValidationChain } from 'express-validator/check';
+import { reminderFrequencyValidator } from '../validator';
 
 /**
  * Reminder frequency router
@@ -13,11 +15,11 @@ import { DecoratorMetadataKeys } from '../constant';
 @SingletonClass(DecoratorMetadataKeys.ROUTER_INSTANCE)
 export class ReminderFrequencyRouter extends BaseRouter<ReminderFrequencyController> {
 
-  @SingletonRouterInstance(ReminderFrequencyController)
+  @SingletonRouterInstance(ReminderFrequencyController, reminderFrequencyValidator)
   private static instance: ReminderFrequencyRouter;
 
-  private constructor(controller: ReminderFrequencyController) {
-    super(controller);
+  private constructor(controller: ReminderFrequencyController, validator?: ValidationChain[]) {
+    super(controller, validator);
   }
 
   protected initRoutes(): void {

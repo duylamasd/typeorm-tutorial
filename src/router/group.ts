@@ -5,6 +5,8 @@ import {
   SingletonClass
 } from '../decorator';
 import { DecoratorMetadataKeys } from '../constant';
+import { groupValidator } from '../validator';
+import { ValidationChain } from 'express-validator/check';
 
 /**
  * Group router
@@ -13,11 +15,11 @@ import { DecoratorMetadataKeys } from '../constant';
 @SingletonClass(DecoratorMetadataKeys.ROUTER_INSTANCE)
 export class GroupRouter extends BaseRouter<GroupController> {
 
-  @SingletonRouterInstance(GroupController)
+  @SingletonRouterInstance(GroupController, groupValidator)
   private static instance: GroupRouter;
 
-  private constructor(controller: GroupController) {
-    super(controller);
+  private constructor(controller: GroupController, validator?: ValidationChain[]) {
+    super(controller, validator);
   }
 
   protected initRoutes(): void {
