@@ -1,14 +1,7 @@
-import {
-  Request,
-  Response,
-  NextFunction
-} from 'express';
 import { Router } from 'express';
 import { BaseController } from './base-controller';
 import { validateRequest } from '../validator';
 import { ValidationChain } from 'express-validator/check';
-
-const nextMethod = (req: Request, res: Response, next: NextFunction) => next();
 
 /**
  * Base router
