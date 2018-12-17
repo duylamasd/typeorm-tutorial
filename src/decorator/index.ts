@@ -14,6 +14,8 @@ export function SingletonClass(metadataKey: string) {
     target.getInstance = () => {
       return target[instancePropertyName];
     }
+
+    return target;
   };
 }
 

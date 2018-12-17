@@ -4,8 +4,7 @@
   "description": "TypeORM tutorial",
   "main": "app.js",
   "scripts": {
-    "start": "tsc && node ./build/app.js",
-    "start-ts": "./node_modules/.bin/ts-node ./src/app.ts",
+    "start": "./node_modules/.bin/ts-node ./src/app.ts",
     "typeorm": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,6 +29,7 @@
     "@types/dotenv": "^6.1.0",
     "@types/express": "^4.16.0",
     "@types/jsonwebtoken": "^8.3.0",
+    "@types/node": "^10.12.15",
     "async": "^2.6.1",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
@@ -45,6 +45,6 @@
     "typeorm": "^0.2.9"
   },
   "devDependencies": {
-    "typescript": "^3.2.1"
+    "typescript": "^3.2.2"
   }
 }

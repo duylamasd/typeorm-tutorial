@@ -11,12 +11,13 @@ import { ReminderFrequencyRouter } from './reminder-frequency';
  * @param {Express} app The application.
  */
 const initRoutes = async (app: Express) => {
-  let userRouter = UserRouter.getInstance().router;
-  let groupRouter = GroupRouter.getInstance().router;
-  let userGroupRouter = UserGroupRouter.getInstance().router;
-  let messageRecipientRouter = MessageRecipientRouter.getInstance().router;
-  let messageRouter = MessageRouter.getInstance().router;
-  let reminderFrequencyRouter = ReminderFrequencyRouter.getInstance().router;
+  console.log(UserRouter);
+  let userRouter = UserRouter['getInstance']().router;
+  let groupRouter = GroupRouter['getInstance']().router;
+  let userGroupRouter = UserGroupRouter['getInstance']().router;
+  let messageRecipientRouter = MessageRecipientRouter['getInstance']().router;
+  let messageRouter = MessageRouter['getInstance']().router;
+  let reminderFrequencyRouter = ReminderFrequencyRouter['getInstance']().router;
 
   app.use('/users', userRouter);
   app.use('/groups', groupRouter);
