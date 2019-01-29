@@ -3,7 +3,7 @@ import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn
-} from 'typeorm';
+} from "typeorm";
 
 /**
  * Base entity, contains id and timestamps columns.
@@ -14,16 +14,16 @@ import {
  */
 export abstract class BaseEntity extends Base {
 
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @CreateDateColumn({
-    type: 'datetime'
+    type: "datetime"
   })
   createdAt: Date;
 
   @UpdateDateColumn({
-    type: 'datetime'
+    type: "datetime"
   })
   updatedAt: Date;
 }

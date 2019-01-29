@@ -2,7 +2,7 @@ import {
   Request,
   Response,
   NextFunction
-} from 'express';
+} from "express";
 
 /**
  * The error handler
@@ -19,7 +19,7 @@ export function ErrorHandler(
 ) {
   let statusCode: number = err.code || err.statusCode || 500;
   res.status(statusCode).json({
-    message: 'error',
+    message: "error",
     metadata: err
   });
 }

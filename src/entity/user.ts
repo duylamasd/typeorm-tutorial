@@ -3,11 +3,11 @@ import {
   Entity,
   Index,
   OneToMany
-} from 'typeorm';
-import { BaseEntity } from '../utils';
-import { UserGroup } from './user-group';
-import { Message } from './message';
-import { MessageRecipient } from './message-recipient';
+} from "typeorm";
+import { BaseEntity } from "../utils";
+import { UserGroup } from "./user-group";
+import { Message } from "./message";
+import { MessageRecipient } from "./message-recipient";
 
 /**
  * User entity
@@ -21,35 +21,35 @@ import { MessageRecipient } from './message-recipient';
  * @property  {Promise<MessageRecipient[]}  messageRecipients
  */
 @Entity()
-@Index('I001', ['firstName', 'lastName'])
-@Index('I002', ['firstName', 'middleName', 'lastName'], {
+@Index("I001", ["firstName", "lastName"])
+@Index("I002", ["firstName", "middleName", "lastName"], {
   unique: true
 })
 export class User extends BaseEntity {
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 50,
     nullable: false
   })
   firstName: string;
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 50,
     nullable: false
   })
   middleName: string;
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 50,
     nullable: false
   })
   lastName: string;
 
   @Column({
-    type: 'tinyint',
+    type: "tinyint",
     nullable: false,
     default: true
   })

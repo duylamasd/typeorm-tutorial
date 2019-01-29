@@ -2,16 +2,16 @@ import {
   Request,
   Response,
   NextFunction
-} from 'express';
-import { ObjectType } from 'typeorm';
-import { GroupRepository } from '../repository';
-import { BaseController } from '../utils';
-import { APIQuery, DecoratorMetadataKeys } from '../constant';
-import { UserGroup, Group } from '../entity';
+} from "express";
+import { ObjectType } from "typeorm";
+import { GroupRepository } from "../repository";
+import { BaseController } from "../utils";
+import { APIQuery, DecoratorMetadataKeys } from "../constant";
+import { UserGroup, Group } from "../entity";
 import {
   SingletonControllerInstance,
   SingletonClass
-} from '../decorator';
+} from "../decorator";
 
 /**
  * Group controller
@@ -28,7 +28,7 @@ export class GroupController extends BaseController<GroupRepository> {
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {
-    let idOrName = req.params['idOrName'];
+    let idOrName = req.params["idOrName"];
 
     this.repository.isActive(idOrName)
       .then((status: boolean) => {
@@ -39,7 +39,7 @@ export class GroupController extends BaseController<GroupRepository> {
   }
 
   getUserGroups = (req: Request, res: Response, next: NextFunction) => {
-    let idOrName = req.params['idOrName'];
+    let idOrName = req.params["idOrName"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 
@@ -52,7 +52,7 @@ export class GroupController extends BaseController<GroupRepository> {
   }
 
   deactivate = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.deactivateById(id)
       .then(result => {
@@ -63,7 +63,7 @@ export class GroupController extends BaseController<GroupRepository> {
   }
 
   activate = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.activateById(id)
       .then(result => {

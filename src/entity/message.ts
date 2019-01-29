@@ -8,11 +8,11 @@ import {
   Tree,
   TreeChildren,
   TreeParent
-} from 'typeorm';
-import { BaseEntity } from '../utils';
-import { User } from './user';
-import { MessageRecipient } from './message-recipient';
-import { ReminderFrequency } from './reminder-frequency';
+} from "typeorm";
+import { BaseEntity } from "../utils";
+import { User } from "./user";
+import { MessageRecipient } from "./message-recipient";
+import { ReminderFrequency } from "./reminder-frequency";
 
 /**
  * Message entity
@@ -32,75 +32,75 @@ import { ReminderFrequency } from './reminder-frequency';
  * @property  {Promise<Message>}              parentMessage
  */
 @Entity()
-@Tree('materialized-path')
-@Index('I008', ['subject'])
-@Index('I009', ['creatorId'])
-@Index('I010', ['parentMessageId'])
-@Index('I011', ['reminderFrequencyId'])
-@Index('I012', ['subject', 'creatorId', 'parentMessageId', 'reminderFrequencyId'])
+@Tree("materialized-path")
+@Index("I008", ["subject"])
+@Index("I009", ["creatorId"])
+@Index("I010", ["parentMessageId"])
+@Index("I011", ["reminderFrequencyId"])
+@Index("I012", ["subject", "creatorId", "parentMessageId", "reminderFrequencyId"])
 export class Message extends BaseEntity {
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 100,
     nullable: false
   })
   subject: string;
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: false
   })
   creatorId: string;
 
   @Column({
-    type: 'text',
+    type: "text",
     nullable: false
   })
   body: string;
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: true
   })
   parentMessageId: string;
 
   @Column({
-    type: 'datetime',
+    type: "datetime",
     nullable: false
   })
   expiryDate: Date;
 
   @Column({
     default: false,
-    type: 'tinyint',
+    type: "tinyint",
     nullable: false
   })
   isReminder: boolean;
 
   @Column({
-    type: 'date',
+    type: "date",
     nullable: true
   })
   nextRemindDate: Date;
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: true
   })
   reminderFrequencyId: string;
 
   @ManyToOne(type => User)
   @JoinColumn({
-    name: 'creatorId',
-    referencedColumnName: 'id'
+    name: "creatorId",
+    referencedColumnName: "id"
   })
   creator: Promise<User>;
 
   @ManyToOne(type => ReminderFrequency, { nullable: true })
   @JoinColumn({
-    name: 'reminderFrequencyId',
-    referencedColumnName: 'id'
+    name: "reminderFrequencyId",
+    referencedColumnName: "id"
   })
   reminderFrequency: Promise<ReminderFrequency>;
 

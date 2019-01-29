@@ -2,16 +2,16 @@ import {
   Request,
   Response,
   NextFunction
-} from 'express';
-import { User, Message, UserGroup } from '../entity';
-import { ObjectType } from 'typeorm';
-import { BaseController } from '../utils';
-import { MessageRecipientRepository } from '../repository';
-import { APIQuery, DecoratorMetadataKeys } from '../constant';
+} from "express";
+import { User, Message, UserGroup } from "../entity";
+import { ObjectType } from "typeorm";
+import { BaseController } from "../utils";
+import { MessageRecipientRepository } from "../repository";
+import { APIQuery, DecoratorMetadataKeys } from "../constant";
 import {
   SingletonControllerInstance,
   SingletonClass
-} from '../decorator';
+} from "../decorator";
 
 /**
  * Message recipient controller
@@ -28,7 +28,7 @@ export class MessageRecipientController extends BaseController<MessageRecipientR
   }
 
   getUser = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getUser(id)
       .then((user: User) => {
@@ -39,7 +39,7 @@ export class MessageRecipientController extends BaseController<MessageRecipientR
   }
 
   getMessage = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getMessage(id)
       .then((message: Message) => {
@@ -50,7 +50,7 @@ export class MessageRecipientController extends BaseController<MessageRecipientR
   }
 
   getRecipientGroup = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getRecipientGroup(id)
       .then((group: UserGroup) => {
@@ -61,7 +61,7 @@ export class MessageRecipientController extends BaseController<MessageRecipientR
   }
 
   isRead = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.isRead(id)
       .then((status: boolean) => {

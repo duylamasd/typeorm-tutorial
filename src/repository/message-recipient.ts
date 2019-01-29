@@ -1,11 +1,11 @@
-import { EntityRepository } from 'typeorm';
-import { BaseRepositories } from '../utils';
+import { EntityRepository } from "typeorm";
+import { BaseRepositories } from "../utils";
 import {
   MessageRecipient,
   User,
   Message,
   UserGroup
-} from '../entity';
+} from "../entity";
 
 /**
  * Message recipient repository

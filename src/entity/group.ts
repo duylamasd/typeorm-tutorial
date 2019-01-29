@@ -3,9 +3,9 @@ import {
   Entity,
   Index,
   OneToMany
-} from 'typeorm';
-import { BaseEntity } from '../utils';
-import { UserGroup } from './user-group';
+} from "typeorm";
+import { BaseEntity } from "../utils";
+import { UserGroup } from "./user-group";
 
 /**
  * Group entity
@@ -15,20 +15,20 @@ import { UserGroup } from './user-group';
  * @property  {Promise<UserGroup[]>}  userGroups
  */
 @Entity()
-@Index('I003', ['name'], {
+@Index("I003", ["name"], {
   unique: true
 })
 export class Group extends BaseEntity {
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 50,
     nullable: false
   })
   name: string;
 
   @Column({
-    type: 'tinyint',
+    type: "tinyint",
     nullable: false,
     default: true
   })

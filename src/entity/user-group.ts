@@ -5,11 +5,11 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany
-} from 'typeorm';
-import { BaseEntity } from '../utils';
-import { User } from './user';
-import { Group } from './group';
-import { MessageRecipient } from './message-recipient';
+} from "typeorm";
+import { BaseEntity } from "../utils";
+import { User } from "./user";
+import { Group } from "./group";
+import { MessageRecipient } from "./message-recipient";
 
 /**
  * UserGroup entity
@@ -22,27 +22,27 @@ import { MessageRecipient } from './message-recipient';
  * @property  {Promise<MessageRecipient[]>} messageRecipients
  */
 @Entity()
-@Index('I004', ['userId'])
-@Index('I005', ['groupId'])
-@Index('I006', ['userId', 'groupId'], {
+@Index("I004", ["userId"])
+@Index("I005", ["groupId"])
+@Index("I006", ["userId", "groupId"], {
   unique: true
 })
 export class UserGroup extends BaseEntity {
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: false
   })
   userId: string;
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: false
   })
   groupId: string;
 
   @Column({
-    type: 'tinyint',
+    type: "tinyint",
     nullable: false,
     default: true
   })
@@ -50,15 +50,15 @@ export class UserGroup extends BaseEntity {
 
   @ManyToOne(type => User)
   @JoinColumn({
-    name: 'userId',
-    referencedColumnName: 'id'
+    name: "userId",
+    referencedColumnName: "id"
   })
   user: Promise<User>;
 
   @ManyToOne(type => Group)
   @JoinColumn({
-    name: 'groupId',
-    referencedColumnName: 'id'
+    name: "groupId",
+    referencedColumnName: "id"
   })
   group: Promise<Group>;
 

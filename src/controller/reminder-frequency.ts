@@ -2,16 +2,16 @@ import {
   Request,
   Response,
   NextFunction
-} from 'express';
-import { ObjectType } from 'typeorm';
-import { ReminderFrequencyRepository } from '../repository';
-import { BaseController } from '../utils';
-import { APIQuery, DecoratorMetadataKeys } from '../constant';
-import { ReminderFrequency, Message } from '../entity';
+} from "express";
+import { ObjectType } from "typeorm";
+import { ReminderFrequencyRepository } from "../repository";
+import { BaseController } from "../utils";
+import { APIQuery, DecoratorMetadataKeys } from "../constant";
+import { ReminderFrequency, Message } from "../entity";
 import {
   SingletonControllerInstance,
   SingletonClass
-} from '../decorator';
+} from "../decorator";
 
 /**
  * Reminder frequency controller
@@ -28,7 +28,7 @@ export class ReminderFrequencyController extends BaseController<ReminderFrequenc
   }
 
   findByTitle = (req: Request, res: Response, next: NextFunction) => {
-    let title = req.params['title'];
+    let title = req.params["title"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 
@@ -41,7 +41,7 @@ export class ReminderFrequencyController extends BaseController<ReminderFrequenc
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.isActive(id)
       .then((status: boolean) => {
@@ -52,7 +52,7 @@ export class ReminderFrequencyController extends BaseController<ReminderFrequenc
   }
 
   getMessages = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 

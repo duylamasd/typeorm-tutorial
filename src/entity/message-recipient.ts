@@ -4,11 +4,11 @@ import {
   Index,
   JoinColumn,
   ManyToOne
-} from 'typeorm';
-import { BaseEntity } from '../utils';
-import { User } from './user';
-import { UserGroup } from './user-group';
-import { Message } from './message';
+} from "typeorm";
+import { BaseEntity } from "../utils";
+import { User } from "./user";
+import { UserGroup } from "./user-group";
+import { Message } from "./message";
 
 /**
  * Message recipient entity
@@ -22,55 +22,55 @@ import { Message } from './message';
  * @property  {Promise<Message>}    message
  */
 @Entity()
-@Index('I013', ['recipientId'])
-@Index('I014', ['recipientGroupId'])
-@Index('I015', ['messageId'])
-@Index('I016', ['recipientId', 'recipientGroupId', 'messageId'])
+@Index("I013", ["recipientId"])
+@Index("I014", ["recipientGroupId"])
+@Index("I015", ["messageId"])
+@Index("I016", ["recipientId", "recipientGroupId", "messageId"])
 export class MessageRecipient extends BaseEntity {
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: true
   })
   recipientId: string;
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: true
   })
   recipientGroupId: string;
 
   @Column({
-    type: 'uuid',
+    type: "uuid",
     nullable: false
   })
   messageId: string;
 
   @Column({
     default: true,
-    type: 'tinyint',
+    type: "tinyint",
     nullable: false
   })
   isRead: boolean;
 
   @ManyToOne(type => User, { nullable: true })
   @JoinColumn({
-    name: 'recipientId',
-    referencedColumnName: 'id'
+    name: "recipientId",
+    referencedColumnName: "id"
   })
   recipient: Promise<User>;
 
   @ManyToOne(type => UserGroup, { nullable: true })
   @JoinColumn({
-    name: 'recipientGroupId',
-    referencedColumnName: 'id'
+    name: "recipientGroupId",
+    referencedColumnName: "id"
   })
   recipientGroup: Promise<UserGroup>;
 
   @ManyToOne(type => Message)
   @JoinColumn({
-    name: 'messageId',
-    referencedColumnName: 'id'
+    name: "messageId",
+    referencedColumnName: "id"
   })
   message: Promise<Message>;
 }

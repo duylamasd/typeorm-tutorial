@@ -2,16 +2,16 @@ import {
   Request,
   Response,
   NextFunction
-} from 'express';
-import { ObjectType } from 'typeorm';
-import { UserRepository } from '../repository';
-import { BaseController } from '../utils';
-import { APIQuery, DecoratorMetadataKeys } from '../constant';
-import { UserGroup, Message, MessageRecipient } from '../entity';
+} from "express";
+import { ObjectType } from "typeorm";
+import { UserRepository } from "../repository";
+import { BaseController } from "../utils";
+import { APIQuery, DecoratorMetadataKeys } from "../constant";
+import { UserGroup, Message, MessageRecipient } from "../entity";
 import {
   SingletonControllerInstance,
   SingletonClass
-} from '../decorator';
+} from "../decorator";
 
 /**
  * User controller
@@ -28,7 +28,7 @@ export class UserController extends BaseController<UserRepository> {
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {
-    let userId = req.params['id'];
+    let userId = req.params["id"];
 
     this.repository.isActive(userId)
       .then((status: boolean) => {
@@ -39,7 +39,7 @@ export class UserController extends BaseController<UserRepository> {
   }
 
   activate = (req: Request, res: Response, next: NextFunction) => {
-    let userId = req.params['id'];
+    let userId = req.params["id"];
 
     this.repository.activate(userId)
       .then(result => {
@@ -50,7 +50,7 @@ export class UserController extends BaseController<UserRepository> {
   }
 
   deactivate = (req: Request, res: Response, next: NextFunction) => {
-    let userId = req.params['id'];
+    let userId = req.params["id"];
 
     this.repository.deactivate(userId)
       .then(result => {
@@ -61,7 +61,7 @@ export class UserController extends BaseController<UserRepository> {
   }
 
   getUserGroups = (req: Request, res: Response, next: NextFunction) => {
-    let userId = req.params['id'];
+    let userId = req.params["id"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 
@@ -74,7 +74,7 @@ export class UserController extends BaseController<UserRepository> {
   }
 
   getMessages = (req: Request, res: Response, next: NextFunction) => {
-    let userId = req.params['id'];
+    let userId = req.params["id"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 
@@ -87,7 +87,7 @@ export class UserController extends BaseController<UserRepository> {
   }
 
   getMessageRecipients = (req: Request, res: Response, next: NextFunction) => {
-    let userId = req.params['id'];
+    let userId = req.params["id"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 

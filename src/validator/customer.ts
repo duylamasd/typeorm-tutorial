@@ -1,6 +1,6 @@
 import { checkSchema } from "express-validator/check";
 
-export const groupValidator = checkSchema({
+export const customerValidator = checkSchema({
   name: {
     in: "body",
     exists: {

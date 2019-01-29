@@ -3,9 +3,9 @@ import {
   UpdateResult,
   DeleteResult,
   getConnection
-} from 'typeorm';
-import { BaseRepositories } from '../utils';
-import { Group, UserGroup } from '../entity';
+} from "typeorm";
+import { BaseRepositories } from "../utils";
+import { Group, UserGroup } from "../entity";
 
 /**
  * Group repository
@@ -39,19 +39,19 @@ export class GroupRepository extends BaseRepositories.BaseRepository<Group> {
   }
 
   isActive(idOrName: string): Promise<boolean> {
-    return this.createQueryBuilder('group')
-      .where('group.id = :id', { id: idOrName })
-      .orWhere('group.name = :name', { name: idOrName })
+    return this.createQueryBuilder("group")
+      .where("group.id = :id", { id: idOrName })
+      .orWhere("group.name = :name", { name: idOrName })
       .getOne()
       .then((group: Group) => group.isActive);
   }
 
   getUserGroups(idOrName: string, skip?: number, limit?: number): Promise<UserGroup[]> {
     return getConnection()
-      .createQueryBuilder(UserGroup, 'userGroup')
-      .leftJoinAndSelect(Group, 'group', 'group.id = userGroup.groupId')
-      .where('group.id = :id', { id: idOrName })
-      .orWhere('group.name = :name', { name: idOrName })
+      .createQueryBuilder(UserGroup, "userGroup")
+      .leftJoinAndSelect(Group, "group", "group.id = userGroup.groupId")
+      .where("group.id = :id", { id: idOrName })
+      .orWhere("group.name = :name", { name: idOrName })
       .skip(skip)
       .take(limit)
       .getMany();

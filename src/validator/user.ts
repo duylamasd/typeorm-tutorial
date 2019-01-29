@@ -1,33 +1,33 @@
-import { checkSchema } from 'express-validator/check';
+import { checkSchema } from "express-validator/check";
 
 export const userValidator = checkSchema({
   firstName: {
-    in: 'body',
+    in: "body",
     isString: {
-      errorMessage: 'firstName must be a string'
+      errorMessage: "firstName must be a string"
     },
     isLength: {
-      errorMessage: 'firstName must be no more than 50 characters long',
+      errorMessage: "firstName must be no more than 50 characters long",
       options: { max: 50 }
     }
   },
   middleName: {
-    in: 'body',
+    in: "body",
     isString: {
-      errorMessage: 'middleName must be a string'
+      errorMessage: "middleName must be a string"
     },
     isLength: {
-      errorMessage: 'middleName must be no more than 50 characters long',
+      errorMessage: "middleName must be no more than 50 characters long",
       options: { max: 50 }
     }
   },
   lastName: {
-    in: 'body',
+    in: "body",
     isString: {
-      errorMessage: 'lastName must be a string'
+      errorMessage: "lastName must be a string"
     },
     isLength: {
-      errorMessage: 'lastName must be no more than 50 characters long',
+      errorMessage: "lastName must be no more than 50 characters long",
       options: { max: 50 }
     }
   }

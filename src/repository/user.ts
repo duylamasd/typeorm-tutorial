@@ -1,11 +1,11 @@
-import { EntityRepository, getConnection, UpdateResult } from 'typeorm';
-import { BaseRepositories } from '../utils';
+import { EntityRepository, getConnection, UpdateResult } from "typeorm";
+import { BaseRepositories } from "../utils";
 import {
   User,
   UserGroup,
   Message,
   MessageRecipient
-} from '../entity';
+} from "../entity";
 
 /**
  * User repository
@@ -43,8 +43,8 @@ export class UserRepository extends BaseRepositories.BaseRepository<User> {
 
   getUserGroups(id: string, skip?: number, limit?: number): Promise<UserGroup[]> {
     return getConnection()
-      .createQueryBuilder(UserGroup, 'userGroup')
-      .where('userGroup.userId = :userId', { userId: id })
+      .createQueryBuilder(UserGroup, "userGroup")
+      .where("userGroup.userId = :userId", { userId: id })
       .skip(skip)
       .take(limit)
       .getMany();
@@ -52,8 +52,8 @@ export class UserRepository extends BaseRepositories.BaseRepository<User> {
 
   getMessages(id: string, skip?: number, limit?: number): Promise<Message[]> {
     return getConnection()
-      .createQueryBuilder(Message, 'message')
-      .where('message.creatorId = :creatorId', { creatorId: id })
+      .createQueryBuilder(Message, "message")
+      .where("message.creatorId = :creatorId", { creatorId: id })
       .offset(skip)
       .limit(limit)
       .getMany();
@@ -61,8 +61,8 @@ export class UserRepository extends BaseRepositories.BaseRepository<User> {
 
   getMessageRecipients(id: string, skip?: number, limit?: number): Promise<MessageRecipient[]> {
     return getConnection()
-      .createQueryBuilder(MessageRecipient, 'mr')
-      .where('mr.recipientId = :recipientId', { recipientId: id })
+      .createQueryBuilder(MessageRecipient, "mr")
+      .where("mr.recipientId = :recipientId", { recipientId: id })
       .offset(skip)
       .limit(limit)
       .getMany();

@@ -1,22 +1,22 @@
-import { checkSchema } from 'express-validator/check';
+import { checkSchema } from "express-validator/check";
 
 export const messageRecipientValidator = checkSchema({
   recipientId: {
-    in: 'body',
+    in: "body",
     isUUID: {
-      errorMessage: 'recipient id is not a uuid'
+      errorMessage: "recipient id is not a uuid"
     }
   },
   recipientGroupId: {
-    in: 'body',
+    in: "body",
     isUUID: {
-      errorMessage: 'recipient id is not a uuid'
+      errorMessage: "recipient id is not a uuid"
     }
   },
   messageId: {
-    in: 'body',
+    in: "body",
     isUUID: {
-      errorMessage: 'recipient id is not a uuid'
+      errorMessage: "recipient id is not a uuid"
     }
   }
 });

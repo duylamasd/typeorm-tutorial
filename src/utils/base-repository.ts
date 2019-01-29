@@ -1,8 +1,8 @@
 import {
   Repository,
   TreeRepository
-} from 'typeorm';
-import { BaseEntity } from './base-entity';
+} from "typeorm";
+import { BaseEntity } from "./base-entity";
 
 export namespace BaseRepositories {
   /**

@@ -3,9 +3,9 @@ import {
   Entity,
   Index,
   OneToMany
-} from 'typeorm';
-import { BaseEntity } from '../utils';
-import { Message } from './message';
+} from "typeorm";
+import { BaseEntity } from "../utils";
+import { Message } from "./message";
 
 /**
  * Reminder frequency entity
@@ -16,24 +16,24 @@ import { Message } from './message';
  * @property  {Promise<Message[]>}  messages
  */
 @Entity()
-@Index('I007', ['title'])
+@Index("I007", ["title"])
 export class ReminderFrequency extends BaseEntity {
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 25,
     nullable: false
   })
   title: string;
 
   @Column({
-    type: 'tinyint',
+    type: "tinyint",
     nullable: false
   })
   frequency: number;
 
   @Column({
-    type: 'tinyint',
+    type: "tinyint",
     nullable: false,
     default: true
   })

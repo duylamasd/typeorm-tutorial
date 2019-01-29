@@ -1,6 +1,6 @@
-import { EntityRepository, getConnection, UpdateResult } from 'typeorm';
-import { BaseRepositories } from '../utils';
-import { UserGroup, User, Group, MessageRecipient } from '../entity';
+import { EntityRepository, getConnection, UpdateResult } from "typeorm";
+import { BaseRepositories } from "../utils";
+import { UserGroup, User, Group, MessageRecipient } from "../entity";
 
 /**
  * User group repository
@@ -51,8 +51,8 @@ export class UserGroupRepository extends BaseRepositories.BaseRepository<UserGro
 
   getMessageRecipients(id: string, skip?: number, limit?: number): Promise<MessageRecipient[]> {
     return getConnection()
-      .createQueryBuilder(MessageRecipient, 'mr')
-      .where('mr.recipientGroupId = :rgId', { rgId: id })
+      .createQueryBuilder(MessageRecipient, "mr")
+      .where("mr.recipientGroupId = :rgId", { rgId: id })
       .offset(skip)
       .limit(limit)
       .getMany();

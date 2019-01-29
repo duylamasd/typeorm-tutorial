@@ -1,13 +1,13 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
-import express from 'express';
-import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
-import compression from 'compression';
-import { createConnection } from 'typeorm';
+import express from "express";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import compression from "compression";
+import { createConnection } from "typeorm";
 
-import { ErrorHandler } from './utils';
-import initRoutes from './router';
+import { ErrorHandler } from "./utils";
+import initRoutes from "./router";
 
 dotenv.config();
 

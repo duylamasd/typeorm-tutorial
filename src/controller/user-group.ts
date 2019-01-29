@@ -2,16 +2,16 @@ import {
   Request,
   Response,
   NextFunction
-} from 'express';
-import { ObjectType } from 'typeorm';
-import { UserGroupRepository } from '../repository';
-import { BaseController } from '../utils';
-import { User, Group, MessageRecipient } from '../entity';
-import { APIQuery, DecoratorMetadataKeys } from '../constant';
+} from "express";
+import { ObjectType } from "typeorm";
+import { UserGroupRepository } from "../repository";
+import { BaseController } from "../utils";
+import { User, Group, MessageRecipient } from "../entity";
+import { APIQuery, DecoratorMetadataKeys } from "../constant";
 import {
   SingletonControllerInstance,
   SingletonClass
-} from '../decorator';
+} from "../decorator";
 
 /**
  * User group repository
@@ -28,7 +28,7 @@ export class UserGroupController extends BaseController<UserGroupRepository> {
   }
 
   isActive = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.isActive(id)
       .then((status: boolean) => {
@@ -39,7 +39,7 @@ export class UserGroupController extends BaseController<UserGroupRepository> {
   }
 
   activate = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.activateById(id)
       .then(result => {
@@ -50,7 +50,7 @@ export class UserGroupController extends BaseController<UserGroupRepository> {
   }
 
   deactivate = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.deactivateById(id)
       .then(result => {
@@ -61,7 +61,7 @@ export class UserGroupController extends BaseController<UserGroupRepository> {
   }
 
   findUser = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.findUser(id)
       .then((user: User) => {
@@ -72,7 +72,7 @@ export class UserGroupController extends BaseController<UserGroupRepository> {
   }
 
   findGroup = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.findGroup(id)
       .then((group: Group) => {
@@ -83,7 +83,7 @@ export class UserGroupController extends BaseController<UserGroupRepository> {
   }
 
   getMessageRecipients = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 

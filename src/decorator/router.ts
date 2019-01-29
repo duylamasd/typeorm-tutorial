@@ -1,10 +1,10 @@
-import 'reflect-metadata';
-import { DecoratorMetadataKeys } from '../constant';
-import { ValidationChain } from 'express-validator/check';
+import "reflect-metadata";
+import { DecoratorMetadataKeys } from "../constant";
+import { ValidationChain } from "express-validator/check";
 
 /**
  * Singleton instance property of the router.
- * This decorator save the property name as class's metadata.
+ * This decorator save the property name as class"s metadata.
  * @param controller The controller
  */
 export function SingletonRouterInstance<T>(controllerType: T, validator: ValidationChain[]) {
@@ -15,10 +15,10 @@ export function SingletonRouterInstance<T>(controllerType: T, validator: Validat
     // #region Create getter and setter for the targeted property
     let instance = target[property];
 
-    // Create new one if instance doesn't exist. Return the instance.
+    // Create new one if instance doesn"t exist. Return the instance.
     const getter = () => {
       if (!instance) {
-        let controller = controllerType['getInstance']();
+        let controller = controllerType["getInstance"]();
         instance = Reflect.construct(target, [controller, validator]);
       }
 

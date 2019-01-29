@@ -3,15 +3,15 @@ import {
   Response,
   NextFunction,
   Router
-} from 'express';
+} from "express";
 import {
   getConnection,
   ObjectType,
   Repository,
   DeleteResult
-} from 'typeorm';
-import HttpStatus from 'http-status-codes';
-import { APIQuery } from '../constant';
+} from "typeorm";
+import HttpStatus from "http-status-codes";
+import { APIQuery } from "../constant";
 
 /**
  * Base controller
@@ -61,7 +61,7 @@ export abstract class BaseController<T extends Repository<any>> {
   }
 
   findById = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.findOne(id)
       .then(row => {
@@ -72,7 +72,7 @@ export abstract class BaseController<T extends Repository<any>> {
   }
 
   deleteById = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.delete(id)
       .then((result: DeleteResult) => {

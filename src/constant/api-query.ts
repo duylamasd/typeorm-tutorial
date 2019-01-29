@@ -1,5 +1,5 @@
 export enum APIQuery {
-  SKIP = '$skip',
-  LIMIT = '$limit',
-  FILTER = '$filter',
+  SKIP = "$skip",
+  LIMIT = "$limit",
+  FILTER = "$filter",
 }

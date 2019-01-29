@@ -1,2 +1,2 @@
-export * from './api-query';
-export * from './decorator';
+export * from "./api-query";
+export * from "./decorator";

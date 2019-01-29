@@ -1,11 +1,11 @@
-import { EntityRepository, getConnection } from 'typeorm';
-import { BaseRepositories } from '../utils';
+import { EntityRepository, getConnection } from "typeorm";
+import { BaseRepositories } from "../utils";
 import {
   Message,
   User,
   ReminderFrequency,
   MessageRecipient
-} from '../entity';
+} from "../entity";
 
 /**
  * Message repository
@@ -45,8 +45,8 @@ export class MessageRepository extends BaseRepositories.BaseTreeRepository<Messa
 
   getMessageRecipients(id: string, skip?: number, limit?: number): Promise<MessageRecipient[]> {
     return getConnection()
-      .createQueryBuilder(MessageRecipient, 'mr')
-      .where('mr.messageId = :messageId', { messageId: id })
+      .createQueryBuilder(MessageRecipient, "mr")
+      .where("mr.messageId = :messageId", { messageId: id })
       .offset(skip)
       .limit(limit)
       .getMany();
@@ -61,7 +61,7 @@ export class MessageRepository extends BaseRepositories.BaseTreeRepository<Messa
 
   async getChildMessages(id: string, skip?: number, limit?: number): Promise<Message[]> {
     let message: Message = await this.findOne(id);
-    return await this.createDescendantsQueryBuilder('message', 'messageClosure', message)
+    return await this.createDescendantsQueryBuilder("message", "messageClosure", message)
       .skip(skip)
       .limit(limit)
       .getMany();

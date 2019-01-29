@@ -1,4 +1,4 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
 /**
  * Singleton class decorator.
@@ -19,5 +19,5 @@ export function SingletonClass(metadataKey: string) {
   };
 }
 
-export * from './controller';
-export * from './router';
+export * from "./controller";
+export * from "./router";

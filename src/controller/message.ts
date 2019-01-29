@@ -2,21 +2,21 @@ import {
   Request,
   Response,
   NextFunction
-} from 'express';
+} from "express";
 import {
   User,
   Message,
   ReminderFrequency,
   MessageRecipient,
-} from '../entity';
-import { ObjectType } from 'typeorm';
-import { MessageRepository } from '../repository';
-import { BaseController } from '../utils';
-import { APIQuery, DecoratorMetadataKeys } from '../constant';
+} from "../entity";
+import { ObjectType } from "typeorm";
+import { MessageRepository } from "../repository";
+import { BaseController } from "../utils";
+import { APIQuery, DecoratorMetadataKeys } from "../constant";
 import {
   SingletonControllerInstance,
   SingletonClass
-} from '../decorator';
+} from "../decorator";
 
 /**
  * Message controller
@@ -33,7 +33,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   isReminder = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.isReminder(id)
       .then((status: boolean) => {
@@ -44,7 +44,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   getNextRemindDate = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getNextRemindDate(id)
       .then((remindDate: Date) => {
@@ -55,7 +55,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   getExpiryDate = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getExpiryDate(id)
       .then((expiryDate: Date) => {
@@ -66,7 +66,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   getCreator = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getCreator(id)
       .then((creator: User) => {
@@ -77,7 +77,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   getReminderFrequency = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getReminderFrequency(id)
       .then((reminderFrequency: ReminderFrequency) => {
@@ -88,7 +88,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   getMessageRecipients = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 
@@ -101,7 +101,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   getParentMessage = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
 
     this.repository.getParentMessage(id)
       .then((message: Message) => {
@@ -112,7 +112,7 @@ export class MessageController extends BaseController<MessageRepository> {
   }
 
   getChildMessages = (req: Request, res: Response, next: NextFunction) => {
-    let id = req.params['id'];
+    let id = req.params["id"];
     let skip = req.query[APIQuery.SKIP];
     let limit = req.query[APIQuery.LIMIT];
 

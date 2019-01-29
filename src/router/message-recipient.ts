@@ -1,12 +1,12 @@
-import { BaseRouter } from '../utils';
-import { MessageRecipientController } from '../controller';
+import { BaseRouter } from "../utils";
+import { MessageRecipientController } from "../controller";
 import {
   SingletonRouterInstance,
   SingletonClass
-} from '../decorator';
-import { DecoratorMetadataKeys } from '../constant';
-import { ValidationChain } from 'express-validator/check';
-import { messageRecipientValidator } from '../validator';
+} from "../decorator";
+import { DecoratorMetadataKeys } from "../constant";
+import { ValidationChain } from "express-validator/check";
+import { messageRecipientValidator } from "../validator";
 
 /**
  * Message recipient controller
@@ -23,9 +23,9 @@ export class MessageRecipientRouter extends BaseRouter<MessageRecipientControlle
   }
 
   protected initRoutes(): void {
-    this.router.get('/:id/user', this.controller.getUser);
-    this.router.get('/:id/message', this.controller.getMessage);
-    this.router.get('/:id/recipient-group', this.controller.getRecipientGroup);
-    this.router.get('/:id/status', this.controller.isRead);
+    this.router.get("/:id/user", this.controller.getUser);
+    this.router.get("/:id/message", this.controller.getMessage);
+    this.router.get("/:id/recipient-group", this.controller.getRecipientGroup);
+    this.router.get("/:id/status", this.controller.isRead);
   }
 }
